@@ -321,8 +321,7 @@ def main():
             config=config,
             cache_dir=model_args.cache_dir,
             revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,bos_token='<|startoftext|>',
-            eos_token='<|endoftext|>', pad_token='<|pad|>'
+            use_auth_token=True if model_args.use_auth_token else None
         )
     else:
         logger.info("Training new model from scratch")
