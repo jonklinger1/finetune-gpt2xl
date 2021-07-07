@@ -338,7 +338,7 @@ def main():
     text_column_name = "text" if "text" in column_names else column_names[0]
 
     def tokenize_function(examples):
-        return tokenizer(examples[text_column_name])
+        return tokenizer(examples[text_column_name], max_length=tokenizer.model_max_length, padding="max_length", truncation=True,)
 
     tokenized_datasets = datasets.map(
         tokenize_function,
