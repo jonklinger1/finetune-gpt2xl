@@ -345,7 +345,7 @@ def main():
         batched=True,
         num_proc=data_args.preprocessing_num_workers,
         remove_columns=column_names,
-        load_from_cache_file=not data_args.overwrite_cache,
+        #load_from_cache_file=not data_args.overwrite_cache,
     )
 
     if data_args.block_size is None:
@@ -393,7 +393,7 @@ def main():
         group_texts,
         batched=True,
         num_proc=data_args.preprocessing_num_workers,
-        load_from_cache_file=not data_args.overwrite_cache,
+        #load_from_cache_file=not data_args.overwrite_cache,
     )
 
     if training_args.do_train:
