@@ -25,7 +25,7 @@ def main():
     torch.manual_seed(42)
     tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-125M", bos_token='<|startoftext|>',
                                             eos_token='<|endoftext|>', pad_token='<|pad|>')
-    model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")#.cuda()
+    model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M").cuda()
     model.resize_token_embeddings(len(tokenizer))
     
     file_names = [name for name in os.listdir("friends") if name.endswith(".txt")]
@@ -52,7 +52,7 @@ def main():
                                                                 'attention_mask': torch.stack([f[1] for f in data]),
                                                                 'labels': torch.stack([f[0] for f in data])}).train()
 
-    generated = tokenizer("<|startoftext|> ", return_tensors="pt").input_ids#.cuda()
+    generated = tokenizer("<|startoftext|> ", return_tensors="pt").input_ids.cuda()
     sample_outputs = model.generate(generated, do_sample=True, top_k=50, 
                                     max_length=2000, top_p=0.95, temperature=0.5, num_return_sequences=20)
     for i, sample_output in enumerate(sample_outputs):
