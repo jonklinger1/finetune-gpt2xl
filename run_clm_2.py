@@ -42,6 +42,8 @@ from transformers import (
     TrainingArguments,
     default_data_collator,
     set_seed,
+    GPT2Tokenizer,
+    GPTNeoForCausalLM
 )
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
 from transformers.utils import check_min_version
